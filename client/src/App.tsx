@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ClothesSelection from "./components/ClothesSelection";
 import CitiesSearch from "./components/CitiesSearch";
 
