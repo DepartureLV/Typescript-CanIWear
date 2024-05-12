@@ -19,11 +19,11 @@ export default function CitiesSearch({
 
   // RETURN
   return (
-    <div className="h-[520px] w-3/4 overflow-scroll animate-fade bg-white p-4 pt-0 rounded-3xl">
+    <div className="h-[500px] w-screen max-w-max md:w-3/4 overflow-scroll animate-fade bg-white px-4 pt-0 mt-5 rounded-3xl shadow-lg">
       <h3 className="text-lg font-semibold p-4 m-[-16px] sticky top-0 bg-white border-b-[0.5px] border-secondary">
         Search Result
       </h3>
-      <ul className="grid grid-flow-row-dense grid-cols-5 grid-rows-3 text-xs mt-8">
+      <ul className="grid grid-flow-row-dense grid-cols-2 sm:grid-cols-3 md:grid-cols-5 grid-rows-3 text-xs mt-8">
         {inputLocation.length > 0
           ? cities.map((city, index) =>
               city.toLowerCase().includes(inputLocation.toLowerCase()) ? (

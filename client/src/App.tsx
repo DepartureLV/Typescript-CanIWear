@@ -3,7 +3,6 @@ import ClothesSelection from "./components/ClothesSelection";
 import CitiesSearch from "./components/CitiesSearch";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-const API_KEY = import.meta.env.VITE_API_KEY;
 
 function App() {
   // USE STATE
@@ -41,48 +40,44 @@ function App() {
 
   // RETURN
   return (
-    <div className="w-screen min-h-screen max-h-full flex flex-col justify-center items-center text-primary">
-      <div className="flex flex-col lg:flex-row items-center ">
+    <div className="w-screen min-h-screen flex flex-col justify-center items-center text-primary">
+      <div className="flex flex-col mt-16 md:flex-row items-center text-2xl">
         {/* INPUT */}
-        <h1 className="text-center text-pretty">
-          Can I wear{" "}
-          <input
-            className="p-2 bg-white/40 text-center"
-            type="search"
-            value={inputClothes}
-            placeholder="Shirt"
-            onClick={(): void => {
-              setIsSearchingClothes(true);
-              setIsSearchingLocation(false);
-            }}
-            onChange={(e): void => {
-              setInputClothes(e.target.value);
-            }}
-          />{" "}
-          in{" "}
-          <input
-            className="p-2 bg-white/40 text-center"
-            type="search"
-            value={inputLocation}
-            placeholder="Tokyo"
-            onClick={(): void => {
-              setIsSearchingClothes(false);
-              setIsSearchingLocation(true);
-            }}
-            onChange={(e): void => {
-              setInputLocation(e.target.value);
-            }}
-          />
-          ?
-        </h1>
-        {inputLocation.length >= 2 && (
-          <button
-            className="min-w-fit h-fit py-4 px-8 ml-8 bg-black text-white"
-            onClick={handleSendUserChoice}
-          >
-            Search
-          </button>
-        )}
+        Can I wear{" "}
+        <input
+          className="p-2 bg-white/40 text-center"
+          type="search"
+          value={inputClothes}
+          placeholder="Shirt"
+          onClick={(): void => {
+            setIsSearchingClothes(true);
+            setIsSearchingLocation(false);
+          }}
+          onChange={(e): void => {
+            setInputClothes(e.target.value);
+          }}
+        />{" "}
+        in{" "}
+        <input
+          className="p-2 bg-white/40 text-center"
+          type="search"
+          value={inputLocation}
+          placeholder="Tokyo"
+          onClick={(): void => {
+            setIsSearchingClothes(false);
+            setIsSearchingLocation(true);
+          }}
+          onChange={(e): void => {
+            setInputLocation(e.target.value);
+          }}
+        />
+        ?
+        <button
+          className="min-w-fit h-fit py-4 px-8 lg:ml-8 bg-black text-white text-sm"
+          onClick={handleSendUserChoice}
+        >
+          Search
+        </button>
       </div>
 
       {/* LAYOUT SHIFT */}
