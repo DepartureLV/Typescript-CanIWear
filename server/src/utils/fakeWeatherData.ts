@@ -1,0 +1,43 @@
+const fakeWeatherData = {
+  location: {
+    name: "Tokyo",
+    region: "Tokyo",
+    country: "Japan",
+    lat: 35.69,
+    lon: 139.69,
+    tz_id: "Asia/Tokyo",
+    localtime_epoch: 1715495346,
+    localtime: "2024-05-12 15:29",
+  },
+  current: {
+    last_updated_epoch: 1715494500,
+    last_updated: "2024-05-12 15:15",
+    temp_c: 23,
+    temp_f: 73.4,
+    is_day: 1,
+    condition: {
+      text: "Partly cloudy",
+      icon: "//cdn.weatherapi.com/weather/64x64/day/116.png",
+      code: 1003,
+    },
+    wind_mph: 12.5,
+    wind_kph: 20.2,
+    wind_degree: 180,
+    wind_dir: "S",
+    pressure_mb: 1015,
+    pressure_in: 29.97,
+    precip_mm: 0,
+    precip_in: 0,
+    humidity: 57,
+    cloud: 75,
+    feelslike_c: 24.9,
+    feelslike_f: 76.9,
+    vis_km: 10,
+    vis_miles: 6,
+    uv: 6,
+    gust_mph: 31.1,
+    gust_kph: 50.1,
+  },
+};
+
+export default fakeWeatherData;
