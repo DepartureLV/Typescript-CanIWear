@@ -7,6 +7,8 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
+const weatherController = require("./src/weather/weather.controller");
+
 app.use(express.json());
 app.use(cors());
 
@@ -17,10 +19,7 @@ app.get("/", async (req, res) => {
   res.status(401).send(response);
 });
 
-app.get("/users", async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.send(users);
-});
+app.post("/result", weatherController.getWeatherData);
 
 app.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
