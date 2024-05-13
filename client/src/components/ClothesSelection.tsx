@@ -20,7 +20,7 @@ type OptionsObjects = {
 };
 
 interface ClothesCatagories {
-  [key: string]: OptionsObjects[] | undefined;
+  [key: string]: OptionsObjects[];
 }
 
 export default function ClothesSelection({ setInputClothes }: Props) {
