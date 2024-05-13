@@ -6,6 +6,6 @@ module.exports = {
       `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}`
     );
     const data = await response.json();
-    console.log("data", data, "clothes", clothes);
+    return data;
   },
 };
