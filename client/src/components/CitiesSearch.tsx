@@ -19,7 +19,7 @@ export default function CitiesSearch({
 
   // RETURN
   return (
-    <div className="h-[500px] w-screen max-w-max md:w-3/4 overflow-scroll animate-fade bg-white px-4 pt-0 mt-5 rounded-3xl shadow-lg">
+    <div className="h-[500px] w-screen md:w-3/4 md:max-w-[1200px] overflow-scroll animate-fade bg-white/70 px-4 pt-0 mt-5 rounded-3xl shadow-lg">
       <h3 className="text-lg font-semibold p-4 m-[-16px] sticky top-0 bg-white border-b-[0.5px] border-secondary">
         Search Result
       </h3>

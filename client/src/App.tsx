@@ -9,8 +9,7 @@ function App() {
   const [inputClothes, setInputClothes] = useState<string>("");
   const [inputLocation, setInputLocation] = useState<string>("");
   const [isSearchingClothes, setIsSearchingClothes] = useState<boolean>(false);
-  const [isSearchingLocation, setIsSearchingLocation] =
-    useState<boolean>(false);
+  const [isSearchingLocation, setIsSearchingLocation] = useState<boolean>(false);
 
   // USE EFFECT
 
@@ -30,14 +29,6 @@ function App() {
     console.log(data);
   };
 
-  // const handleGetWeatherData = async (): Promise<void> => {
-  // const res = await fetch(
-  //   `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${inputLocation}`
-  // );
-  // const data = await res.json();
-  // console.log(data);
-  // };
-
   // RETURN
   return (
     <div className="w-screen min-h-screen flex flex-col justify-center items-center text-primary">
@@ -45,7 +36,7 @@ function App() {
         {/* INPUT */}
         Can I wear{" "}
         <input
-          className="p-2 bg-white/40 text-center"
+          className="p-2 bg-white/70 text-center"
           type="search"
           value={inputClothes}
           placeholder="Shirt"
@@ -59,7 +50,7 @@ function App() {
         />{" "}
         in{" "}
         <input
-          className="p-2 bg-white/40 text-center"
+          className="p-2 bg-white/70 text-center"
           type="search"
           value={inputLocation}
           placeholder="Tokyo"
@@ -86,7 +77,7 @@ function App() {
       ) : null}
 
       {/* CLOTHE SELECTION */}
-      {isSearchingClothes && !isSearchingLocation ? <ClothesSelection /> : null}
+      {isSearchingClothes && !isSearchingLocation && <ClothesSelection setInputClothes={setInputClothes} />}
       {isSearchingLocation && !isSearchingClothes && (
         <CitiesSearch
           inputLocation={inputLocation}
