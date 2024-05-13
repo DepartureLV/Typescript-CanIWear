@@ -13,17 +13,98 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Credential {
-  id     Int     @id @default(autoincrement())
-  username String
-  password    String
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int     @unique
+model tops {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
 }
 
-model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  crendential Credential?
+model bottoms {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
+}
+
+model dresses {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
+}
+
+model outerwear {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
+}
+
+model activewear {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
+}
+
+model accessories {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
+}
+
+model footwear {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
+}
+
+model others {
+  id                  Int     @id @default(autoincrement())
+  itemName            String  @unique
+  maxtemp_resistant   Int
+  mintemp_resistant   Int
+  wind_resistant      Int
+  rain_resistant      Int
+  snow_resistant      Int
+  heat_resistant      Int
+  uv_resistant        Int
 }

@@ -6,10 +6,10 @@ export default {
       colors: {
         primary: "#000000",
         secondary: "#969696",
-        highlight: "#d5ff15",
+        highlight: "#e4ff99",
       },
       backgroundColor: {
-        primary: "#d5ff15",
+        primary: "#e4ff99",
       },
       animation: {
         fade: "fadeIn .4s ease-in-out",
