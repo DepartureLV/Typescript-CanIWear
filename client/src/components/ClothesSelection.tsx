@@ -5,6 +5,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 type Props = {
   setInputClothes: Function;
+  setInputClothesCatagories: Function;
 };
 
 type OptionsObjects = {
@@ -20,7 +21,10 @@ type OptionsObjects = {
   uv_resistant: number;
 };
 
-export default function ClothesSelection({ setInputClothes }: Props) {
+export default function ClothesSelection({
+  setInputClothes,
+  setInputClothesCatagories,
+}: Props) {
   // USE STATE
   const [categories, setCategories] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -30,16 +34,11 @@ export default function ClothesSelection({ setInputClothes }: Props) {
     handleFetchOptions();
   }, []);
 
-  useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
-
   // HANDLER FUNCTION
   const handleFetchOptions = async () => {
     const res = await fetch(`${BASE_URL}/clothes`);
     const data = await res.json();
     const dataArr = Object.entries(data);
-    console.log(dataArr);
     setCategories(dataArr);
     setIsLoading(false);
   };
@@ -93,6 +92,7 @@ export default function ClothesSelection({ setInputClothes }: Props) {
                             className="py-[2px] px-4 bg-primary/60 rounded-full hover:bg-primary hover:text-black z-10"
                             onClick={() => {
                               setInputClothes(clotheOption.itemName);
+                              setInputClothesCatagories(catagory[0]);
                             }}
                           >
                             {clotheOption.itemName}

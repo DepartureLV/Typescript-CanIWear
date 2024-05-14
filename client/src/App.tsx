@@ -8,6 +8,7 @@ function App() {
   // USE STATE
   const [inputClothes, setInputClothes] = useState<string>("");
   const [inputLocation, setInputLocation] = useState<string>("");
+  const [inputClothesCatagories, setInputClothesCatagories] = useState<any>([]);
   const [isSearchingClothes, setIsSearchingClothes] = useState<boolean>(false);
   const [isSearchingLocation, setIsSearchingLocation] =
     useState<boolean>(false);
@@ -16,18 +17,18 @@ function App() {
 
   // HANDLER FUNCTION
   const handleSendUserChoice = async (): Promise<void> => {
-    const res = await fetch(`${BASE_URL}/result`, {
+    const res = await fetch(`${BASE_URL}/result/today`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         clothes: inputClothes,
+        catagories: inputClothesCatagories,
         location: inputLocation,
       }),
     });
     const data = await res.json();
-    console.log(data);
   };
 
   // RETURN
@@ -79,7 +80,10 @@ function App() {
 
       {/* CLOTHE SELECTION */}
       {isSearchingClothes && !isSearchingLocation && (
-        <ClothesSelection setInputClothes={setInputClothes} />
+        <ClothesSelection
+          setInputClothes={setInputClothes}
+          setInputClothesCatagories={setInputClothesCatagories}
+        />
       )}
       {isSearchingLocation && !isSearchingClothes && (
         <CitiesSearch
