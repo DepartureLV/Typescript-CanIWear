@@ -3,6 +3,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.accessories.deleteMany();
+  await prisma.activewear.deleteMany();
+  await prisma.bottoms.deleteMany();
+  await prisma.dresses.deleteMany();
+  await prisma.footwear.deleteMany();
+  await prisma.others.deleteMany();
+  await prisma.outerwear.deleteMany();
+  await prisma.tops.deleteMany();
+
   const accessories = await prisma.accessories.createMany({
     data: [
       {
