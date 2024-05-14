@@ -9,7 +9,8 @@ function App() {
   const [inputClothes, setInputClothes] = useState<string>("");
   const [inputLocation, setInputLocation] = useState<string>("");
   const [isSearchingClothes, setIsSearchingClothes] = useState<boolean>(false);
-  const [isSearchingLocation, setIsSearchingLocation] = useState<boolean>(false);
+  const [isSearchingLocation, setIsSearchingLocation] =
+    useState<boolean>(false);
 
   // USE EFFECT
 
@@ -36,7 +37,7 @@ function App() {
         {/* INPUT */}
         Can I wear{" "}
         <input
-          className="p-2 bg-white/70 text-center"
+          className="p-2 bg-white/70 text-center mx-2"
           type="search"
           value={inputClothes}
           placeholder="Shirt"
@@ -50,7 +51,7 @@ function App() {
         />{" "}
         in{" "}
         <input
-          className="p-2 bg-white/70 text-center"
+          className="p-2 bg-white/70 text-center mx-2"
           type="search"
           value={inputLocation}
           placeholder="Tokyo"
@@ -64,7 +65,7 @@ function App() {
         />
         ?
         <button
-          className="min-w-fit h-fit py-4 px-8 lg:ml-8 bg-black text-white text-sm"
+          className="min-w-fit h-fit py-4 px-8 mx-2 lg:ml-8 bg-black text-white text-sm"
           onClick={handleSendUserChoice}
         >
           Search
@@ -77,7 +78,9 @@ function App() {
       ) : null}
 
       {/* CLOTHE SELECTION */}
-      {isSearchingClothes && !isSearchingLocation && <ClothesSelection setInputClothes={setInputClothes} />}
+      {isSearchingClothes && !isSearchingLocation && (
+        <ClothesSelection setInputClothes={setInputClothes} />
+      )}
       {isSearchingLocation && !isSearchingClothes && (
         <CitiesSearch
           inputLocation={inputLocation}
