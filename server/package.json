@@ -6,11 +6,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx ts-node ./index.ts",
     "express-dev": "nodemon ./index.ts",
-    "build": "npm i && npm run migrate && npm run seed",
+    "build": "npm i && npm run migrate && npx prisma db seed",
     "migrate": "npx prisma migrate dev --name init",
     "seed": "npx ts-node script.ts",
     "studio": "prisma studio",
     "prisma": "prisma"
+  },
+  "prisma": {
+    "seed": "ts-node ./script.ts"
   },
   "keywords": [],
   "author": "",

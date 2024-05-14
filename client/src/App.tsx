@@ -17,7 +17,7 @@ function App() {
 
   // HANDLER FUNCTION
   const handleSendUserChoice = async (): Promise<void> => {
-    const res = await fetch(`${BASE_URL}/result/today`, {
+    await fetch(`${BASE_URL}/result/today`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ function App() {
         location: inputLocation,
       }),
     });
-    const data = await res.json();
+    // const data = await res.json();
   };
 
   // RETURN
