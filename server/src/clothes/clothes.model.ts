@@ -26,16 +26,14 @@ module.exports = {
         others,
       };
     } catch (err) {
-      console.log("error");
+      console.log(err);
     }
   },
 
   async getClothesStat(clothes: string, catagories: string) {
-    console.log(clothes, catagories);
     let stat: clothesStat | null = null;
 
     try {
-      console.log("here");
       if (catagories.toLowerCase() === "tops") {
         stat = await prisma.tops.findUnique({
           where: {

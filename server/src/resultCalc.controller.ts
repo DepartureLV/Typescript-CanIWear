@@ -18,7 +18,6 @@ module.exports = {
       clothes,
       catagories
     );
-    console.log("clothes", clothesData);
 
     const weatherData = await weatherModel.getWeatherDataToday(location);
     // const weatherDataFake = fakeWeatherData;
