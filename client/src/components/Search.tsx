@@ -36,7 +36,7 @@ function Search({ setIsGetResult, setResult }: Props) {
       }),
     });
     const data = await res.json();
-    console.log(data);
+
     if (data) {
       setResult(data);
       setIsGetResult(true);

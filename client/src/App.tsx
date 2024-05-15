@@ -14,7 +14,7 @@ function App() {
 
   // RETURN
   return (
-    <div className="w-screen min-h-screen flex flex-col justify-center items-center text-primary">
+    <div className="w-screen min-h-screen z-10 flex flex-col justify-center items-center text-primary">
       {isGetResult ? (
         <Result
           result={result}
