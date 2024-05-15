@@ -3,14 +3,15 @@ export interface WeatherRawData {
   mintemp_c?: number;
   avgtemp_c?: number;
   maxwind_mph?: number;
+  avghumidity?: number;
   daily_chance_of_rain?: number;
   daily_chance_of_snow?: number;
-  uv?: number;
   condition?: {
     text: string;
     icon: string;
     code: number;
   };
+  uv?: number;
 }
 
 export interface clothesStat {

@@ -157,7 +157,7 @@ async function main() {
         rain_resistant: 2,
         snow_resistant: 2,
         heat_resistant: 2,
-        uv_resistant: 2,
+        uv_resistant: 3,
       },
     ],
   });
@@ -312,7 +312,7 @@ async function main() {
         rain_resistant: 5,
         snow_resistant: 4,
         heat_resistant: 2,
-        uv_resistant: 2,
+        uv_resistant: 3,
       },
       {
         itemName: "Sandals",
@@ -432,7 +432,7 @@ async function main() {
         rain_resistant: 2,
         snow_resistant: 2,
         heat_resistant: 2,
-        uv_resistant: 2,
+        uv_resistant: 3,
       },
       {
         itemName: "Coats",

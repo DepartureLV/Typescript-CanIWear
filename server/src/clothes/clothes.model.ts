@@ -30,8 +30,6 @@ module.exports = {
   },
 
   async getClothesStat(clothes: string, catagories: string) {
-    // console.log(clothes, catagories);
-    // console.log(typeof catagories);
     let stat;
     if (catagories === "tops") {
       stat = prisma.tops.findUnique({

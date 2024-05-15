@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import fakeWeatherData from "./utils/fakeWeatherData";
 const weatherModel = require("./weather/weather.model");
 const clothesModel = require("./clothes/clothes.model");
-const calculate = require("./utils/score");
+const score = require("./utils/score");
 
 import { WeatherRawData, clothesStat } from "../globals";
 
@@ -27,10 +27,11 @@ module.exports = {
       mintemp_c,
       avgtemp_c,
       maxwind_mph,
+      avghumidity,
       daily_chance_of_rain,
       daily_chance_of_snow,
-      uv,
       condition,
+      uv,
     }: WeatherRawData = weatherDataFake.forecast.forecastday[0].day;
 
     const weatherCalcData = {
@@ -38,15 +39,16 @@ module.exports = {
       mintemp_c,
       avgtemp_c,
       maxwind_mph,
+      avghumidity,
       daily_chance_of_rain,
       daily_chance_of_snow,
-      uv,
       condition,
+      uv,
     };
     // console.log(weatherCalcData);
 
-    calculate.calcAll(clothesData, weatherCalcData);
+    const result = score.calcAll(clothesData, weatherCalcData);
 
-    res.status(200).send({ clothesData, weatherCalcData });
+    res.status(200).send(result);
   },
 };
