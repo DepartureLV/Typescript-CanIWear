@@ -24,3 +24,13 @@ export interface clothesStat {
   heat_resistant?: number;
   uv_resistant?: number;
 }
+
+export interface evaluationScore {
+  heatResistantScoreMax: number | NaN;
+  heatResistantScoreMin: number | NaN;
+  heatIndexResistantScore: number | NaN;
+  windResistantScore: number | NaN;
+  rainResistantScore: number | NaN;
+  snowResistantScore: number | NaN;
+  uvResistantScore: number | NaN;
+}

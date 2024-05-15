@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-import fakeWeatherData from "./utils/fakeWeatherData";
 const weatherModel = require("./weather/weather.model");
 const clothesModel = require("./clothes/clothes.model");
 const score = require("./utils/score");
 
-import { WeatherRawData, clothesStat } from "../globals";
+import { WeatherRawData, clothesStat, evaluationScore } from "../globals";
 
 module.exports = {
   async getTodayResult(req: Request, res: Response) {
@@ -19,8 +18,24 @@ module.exports = {
       catagories
     );
 
-    const weatherData = await weatherModel.getWeatherDataToday(location);
-    // const weatherDataFake = fakeWeatherData;
+    const weatherData: any = await weatherModel.getWeatherDataToday(location);
+
+    // ERROR HANDLER
+    if (weatherData.error) {
+      return res.status(400).send({
+        error: { message: "Cound not find the location, please try again" },
+      });
+    }
+
+    if (weatherData.location.country !== "Japan") {
+      return res.status(400).send({
+        error: {
+          message:
+            "Sorry, only city in Japan is supported or this city is not have the data right now",
+        },
+      });
+    }
+
     const {
       maxtemp_c,
       mintemp_c,
@@ -33,7 +48,7 @@ module.exports = {
       uv,
     }: WeatherRawData = weatherData.forecast.forecastday[0].day;
 
-    const weatherCalcData = {
+    const weatherCalcData: WeatherRawData = {
       maxtemp_c,
       mintemp_c,
       avgtemp_c,
@@ -45,7 +60,10 @@ module.exports = {
       uv,
     };
 
-    const evaluationScore = score.calcAll(clothesData, weatherCalcData);
+    const evaluationScore: evaluationScore = score.calcAll(
+      clothesData,
+      weatherCalcData
+    );
     const {
       heatResistantScoreMax,
       heatResistantScoreMin,
@@ -72,21 +90,29 @@ module.exports = {
         0
       );
       const avg: number = sum / params.length;
-      let message = "";
+
+      let message: string = "";
+      let score: number = NaN;
 
       try {
         if (avg < -1) {
           message = "Don't Dare!";
+          score = 0;
         } else if (avg < -0.5) {
           message = "Please avoid!";
+          score = 1;
         } else if (avg < 0) {
           message = "Not recommend";
+          score = 2;
         } else if (avg < 0.5) {
-          message = "OK!";
+          message = "It's OK!";
+          score = 3;
         } else if (avg < 1) {
-          message = "recommend";
+          message = "Recommend";
+          score = 4;
         } else {
           message = "Excellent!";
+          score = 5;
         }
       } catch (error) {
         console.log("err", error);
@@ -94,18 +120,58 @@ module.exports = {
 
       res.status(200).send({
         message,
-        avg,
-        ...evaluationScore,
+        score,
+        evaluation: evaluationScore,
         snowResistantScore: null,
       });
     } else {
+      const params = [
+        heatResistantScoreMax,
+        heatResistantScoreMin,
+        heatIndexResistantScore,
+        windResistantScore,
+        rainResistantScore,
+        uvResistantScore,
+      ];
       // find avg score -> return object with message, avg score, each evaluation
-      const sum: number = evaluationScore.reduce(
+      const sum: number = params.reduce(
         (a: number, b: number): number => a + b,
         0
       );
-      const avg: number = sum / evaluationScore.lenght;
-      res.status(200).send({ message: "success", avg, ...evaluationScore });
+      const avg: number = sum / params.length;
+
+      let message: string = "";
+      let score: number = NaN;
+
+      try {
+        if (avg < -1) {
+          message = "Don't Dare!";
+          score = 0;
+        } else if (avg < -0.5) {
+          message = "Please avoid!";
+          score = 1;
+        } else if (avg < 0) {
+          message = "Not recommend";
+          score = 2;
+        } else if (avg < 0.5) {
+          message = "It's OK!";
+          score = 3;
+        } else if (avg < 1) {
+          message = "Recommend";
+          score = 4;
+        } else {
+          message = "Excellent!";
+          score = 5;
+        }
+      } catch (error) {
+        console.log("err", error);
+      }
+
+      res.status(200).send({
+        message,
+        score,
+        evaluation: evaluationScore,
+      });
     }
   },
 };

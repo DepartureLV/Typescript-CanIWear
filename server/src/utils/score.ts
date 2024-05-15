@@ -1,57 +1,49 @@
-import { WeatherRawData, clothesStat } from "../../globals";
+import { WeatherRawData, clothesStat, evaluationScore } from "../../globals";
 
 module.exports = {
   calcAll(
     clothesData: clothesStat,
     weatherCalcData: WeatherRawData
-  ): {
-    heatResistantScoreMax: number | null;
-    heatResistantScoreMin: number | null;
-    heatIndexResistantScore: number | null;
-    windResistantScore: number | null;
-    rainResistantScore: number | null;
-    snowResistantScore: number | null;
-    uvResistantScore: number | null;
-  } {
-    const heatResistantScoreMax: number | null =
+  ): evaluationScore {
+    const heatResistantScoreMax: number =
       clothesData.maxtemp_resistant && weatherCalcData.maxtemp_c
         ? clothesData.maxtemp_resistant -
           this.maxTempConversion(weatherCalcData.maxtemp_c)
-        : null;
+        : NaN;
 
-    const heatResistantScoreMin: number | null =
+    const heatResistantScoreMin: number =
       clothesData.mintemp_resistant && weatherCalcData.mintemp_c
         ? clothesData.mintemp_resistant -
           this.minTempConversion(weatherCalcData.mintemp_c)
-        : null;
+        : NaN;
 
-    const heatIndexResistantScore: number | null = this.getHeatResistanceLevel(
+    const heatIndexResistantScore: number = this.getHeatResistanceLevel(
       weatherCalcData.avgtemp_c,
       weatherCalcData.avghumidity
     );
 
-    const windResistantScore: number | null =
+    const windResistantScore: number =
       clothesData.wind_resistant && weatherCalcData.maxwind_mph
         ? clothesData.wind_resistant -
           this.windConversion(weatherCalcData.maxwind_mph)
-        : null;
+        : NaN;
 
-    const rainResistantScore: number | null =
+    const rainResistantScore: number =
       clothesData.rain_resistant && weatherCalcData.daily_chance_of_rain
         ? clothesData.rain_resistant -
           this.rainChanceConversion(weatherCalcData.daily_chance_of_rain)
         : 3;
 
-    const snowResistantScore: number | null =
+    const snowResistantScore: number =
       clothesData.snow_resistant && weatherCalcData.daily_chance_of_snow
         ? clothesData.snow_resistant -
           this.snowChanceConversion(weatherCalcData.daily_chance_of_snow)
-        : null;
+        : NaN;
 
-    const uvResistantScore: number | null =
+    const uvResistantScore: number =
       clothesData.uv_resistant && weatherCalcData.uv
         ? clothesData.uv_resistant - this.uvConversion(weatherCalcData.uv)
-        : null;
+        : NaN;
 
     return {
       heatResistantScoreMax,
