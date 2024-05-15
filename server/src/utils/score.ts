@@ -5,58 +5,60 @@ module.exports = {
     clothesData: clothesStat,
     weatherCalcData: WeatherRawData
   ): {
-    heatResistantScoreMax: number;
-    heatResistantScoreMin: number;
-    headIndexResistantScore: number;
-    windResistantScore: number;
-    rainResistantScore: number;
-    snowResistantScore: number;
-    uvResistantScore: number;
+    heatResistantScoreMax: number | null;
+    heatResistantScoreMin: number | null;
+    heatIndexResistantScore: number | null;
+    windResistantScore: number | null;
+    rainResistantScore: number | null;
+    snowResistantScore: number | null;
+    uvResistantScore: number | null;
   } {
-    const heatResistantScoreMax: number =
+    console.log("cloth", clothesData.mintemp_resistant);
+    console.log("wather", this.minTempConversion(weatherCalcData.mintemp_c));
+    const heatResistantScoreMax: number | null =
       clothesData.maxtemp_resistant && weatherCalcData.maxtemp_c
         ? clothesData.maxtemp_resistant -
           this.maxTempConversion(weatherCalcData.maxtemp_c)
-        : 0;
+        : null;
 
-    const heatResistantScoreMin: number =
+    const heatResistantScoreMin: number | null =
       clothesData.mintemp_resistant && weatherCalcData.mintemp_c
         ? clothesData.mintemp_resistant -
           this.minTempConversion(weatherCalcData.mintemp_c)
-        : 0;
+        : null;
 
-    const headIndexResistantScore: number = this.getHeatResistanceLevel(
+    const heatIndexResistantScore: number | null = this.getHeatResistanceLevel(
       weatherCalcData.avgtemp_c,
       weatherCalcData.avghumidity
     );
 
-    const windResistantScore: number =
+    const windResistantScore: number | null =
       clothesData.wind_resistant && weatherCalcData.maxwind_mph
         ? clothesData.wind_resistant -
           this.windConversion(weatherCalcData.maxwind_mph)
-        : 0;
+        : null;
 
-    const rainResistantScore: number =
+    const rainResistantScore: number | null =
       clothesData.rain_resistant && weatherCalcData.daily_chance_of_rain
         ? clothesData.rain_resistant -
           this.rainChanceConversion(weatherCalcData.daily_chance_of_rain)
-        : 5;
+        : 3;
 
-    const snowResistantScore: number =
+    const snowResistantScore: number | null =
       clothesData.snow_resistant && weatherCalcData.daily_chance_of_snow
         ? clothesData.snow_resistant -
           this.snowChanceConversion(weatherCalcData.daily_chance_of_snow)
-        : 99;
+        : null;
 
-    const uvResistantScore: number =
+    const uvResistantScore: number | null =
       clothesData.uv_resistant && weatherCalcData.uv
         ? clothesData.uv_resistant - this.uvConversion(weatherCalcData.uv)
-        : 0;
+        : null;
 
     return {
       heatResistantScoreMax,
       heatResistantScoreMin,
-      headIndexResistantScore,
+      heatIndexResistantScore,
       windResistantScore,
       rainResistantScore,
       snowResistantScore,
@@ -82,15 +84,15 @@ module.exports = {
   },
 
   minTempConversion(temp: number): number | undefined {
-    if (temp < 10) {
+    if (temp < 0) {
       return 5;
-    } else if (temp < 20) {
+    } else if (temp < 10) {
       return 4;
-    } else if (temp < 30) {
+    } else if (temp < 20) {
       return 3;
-    } else if (temp < 40) {
+    } else if (temp < 30) {
       return 2;
-    } else if (temp >= 40) {
+    } else if (temp >= 30) {
       return 1;
     } else {
       console.error("minTemp", temp);

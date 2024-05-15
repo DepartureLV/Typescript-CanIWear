@@ -15,7 +15,6 @@ export interface WeatherRawData {
 }
 
 export interface clothesStat {
-  id: number;
   itemName: string;
   maxtemp_resistant?: number;
   mintemp_resistant?: number;
