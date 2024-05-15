@@ -3,18 +3,18 @@ export interface WeatherRawData {
   mintemp_c?: number;
   avgtemp_c?: number;
   maxwind_mph?: number;
+  avghumidity?: number;
   daily_chance_of_rain?: number;
   daily_chance_of_snow?: number;
-  uv?: number;
   condition?: {
     text: string;
     icon: string;
     code: number;
   };
+  uv?: number;
 }
 
 export interface clothesStat {
-  id: number;
   itemName: string;
   maxtemp_resistant?: number;
   mintemp_resistant?: number;
@@ -23,4 +23,14 @@ export interface clothesStat {
   snow_resistant?: number;
   heat_resistant?: number;
   uv_resistant?: number;
+}
+
+export interface evaluationScore {
+  heatResistantScoreMax: number | NaN;
+  heatResistantScoreMin: number | NaN;
+  heatIndexResistantScore: number | NaN;
+  windResistantScore: number | NaN;
+  rainResistantScore: number | NaN;
+  snowResistantScore: number | NaN;
+  uvResistantScore: number | NaN;
 }

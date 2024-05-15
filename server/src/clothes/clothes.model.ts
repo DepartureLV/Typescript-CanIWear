@@ -1,4 +1,5 @@
 import { Prisma, PrismaClient } from "@prisma/client";
+import { clothesStat } from "../../globals";
 
 const prisma = new PrismaClient();
 
@@ -25,64 +26,65 @@ module.exports = {
         others,
       };
     } catch (err) {
-      console.log("error");
+      console.log(err);
     }
   },
 
   async getClothesStat(clothes: string, catagories: string) {
-    // console.log(clothes, catagories);
-    // console.log(typeof catagories);
-    let stat;
-    if (catagories === "tops") {
-      stat = prisma.tops.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "bottoms") {
-      stat = prisma.bottoms.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "dresses") {
-      stat = prisma.dresses.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "outerwear") {
-      stat = prisma.outerwear.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "activewear") {
-      stat = prisma.activewear.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "accessories") {
-      stat = prisma.accessories.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "footwear") {
-      stat = prisma.footwear.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else if (catagories === "others") {
-      stat = prisma.others.findUnique({
-        where: {
-          itemName: clothes,
-        },
-      });
-    } else {
-      return "error";
+    let stat: clothesStat | null = null;
+
+    try {
+      if (catagories.toLowerCase() === "tops") {
+        stat = await prisma.tops.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "bottoms") {
+        stat = await prisma.bottoms.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "dresses") {
+        stat = await prisma.dresses.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "outerwear") {
+        stat = await prisma.outerwear.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "activewear") {
+        stat = await prisma.activewear.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "accessories") {
+        stat = await prisma.accessories.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "footwear") {
+        stat = await prisma.footwear.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      } else if (catagories.toLowerCase() === "others") {
+        stat = await prisma.others.findUnique({
+          where: {
+            itemName: clothes,
+          },
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
 
     return stat;
