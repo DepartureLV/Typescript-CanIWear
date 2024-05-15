@@ -13,8 +13,6 @@ module.exports = {
     snowResistantScore: number | null;
     uvResistantScore: number | null;
   } {
-    console.log("cloth", clothesData.mintemp_resistant);
-    console.log("wather", this.minTempConversion(weatherCalcData.mintemp_c));
     const heatResistantScoreMax: number | null =
       clothesData.maxtemp_resistant && weatherCalcData.maxtemp_c
         ? clothesData.maxtemp_resistant -
