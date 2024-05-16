@@ -31,7 +31,7 @@ module.exports = {
       return res.status(400).send({
         error: {
           message:
-            "Sorry, only city in Japan is supported or this city is not have the data right now",
+            "Sorry, only city in Japan is supported or this city data is not currently available",
         },
       });
     }
@@ -104,7 +104,7 @@ module.exports = {
           message = "Please avoid!";
           score = 1;
         } else if (avg < 0) {
-          message = "Not recommend";
+          message = "Not recommended";
           score = 2;
         } else if (avg < 0.5) {
           message = "It's OK!";
