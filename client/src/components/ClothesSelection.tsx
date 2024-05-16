@@ -84,12 +84,12 @@ export default function ClothesSelection({
                     <h2 className="font-semibold text-gray-900 mb-2">
                       {catagory[0]}
                     </h2>
-                    <ul className="mt-1 text-secondary flex gap-4 flex-wrap">
+                    <ul className="mt-1 text-white flex gap-4 flex-wrap">
                       {catagory[1].map(
                         (clotheOption: OptionsObjects, index: number) => (
                           <button
                             key={index}
-                            className="py-[2px] px-4 bg-primary/60 rounded-full hover:bg-primary hover:text-black z-10"
+                            className="py-[2px] px-4 bg-primary/60 rounded-full hover:bg-primary hover:text-white z-10 font-[500]"
                             onClick={() => {
                               setInputClothes(clotheOption.itemName);
                               setInputClothesCatagories(catagory[0]);
