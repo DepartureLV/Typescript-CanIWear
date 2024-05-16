@@ -6,7 +6,8 @@ Solo Project for Clothes recommendation based on Weather
 * [Description](#description)
 * [Installation](#installation)
 * [Contribution](#contribution)
-* [Technologies Utilized](#Technologies-Utilized)
+* [Technologies Utilized](#technologies-utilized)
+* [Acknowledgement](#acknowledgement)
 
 ## Description
 Solo Project for Clothes score evaluation based on weather.
@@ -39,3 +40,6 @@ Be sure to have postgresql 14 or higher installed on your local machine. You can
 - Node ![NodeJS](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 - Prisma ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 - PostgresQL ![PostgresQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+
+## Acknowledgement
+Special thanks to [WeatherAPI](https://www.weatherapi.com/) for the weather data.
