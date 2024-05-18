@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import { clothesStat } from "../../globals";
+import { error } from "console";
 
 const prisma = new PrismaClient();
 
@@ -34,6 +35,7 @@ module.exports = {
     let stat: clothesStat | null = null;
 
     try {
+      if (!clothes) throw error;
       if (catagories.toLowerCase() === "tops") {
         stat = await prisma.tops.findUnique({
           where: {
@@ -85,6 +87,7 @@ module.exports = {
       }
     } catch (err) {
       console.log(err);
+      return { error: { message: "Please input clothes type" } };
     }
 
     return stat;
