@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import { clothesStat } from "../../globals";
+import { error } from "console";
 
 const prisma = new PrismaClient();
 
@@ -26,7 +27,7 @@ module.exports = {
         others,
       };
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   },
 
@@ -34,6 +35,7 @@ module.exports = {
     let stat: clothesStat | null = null;
 
     try {
+      if (!clothes) throw error;
       if (catagories.toLowerCase() === "tops") {
         stat = await prisma.tops.findUnique({
           where: {
@@ -84,7 +86,8 @@ module.exports = {
         });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      return { error: { message: "Please input correct clothes type" } };
     }
 
     return stat;

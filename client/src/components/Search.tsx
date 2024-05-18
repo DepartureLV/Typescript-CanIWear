@@ -49,40 +49,49 @@ function Search({ setIsGetResult, setResult }: Props) {
       <div className="flex flex-col mt-16 md:flex-row items-center text-2xl">
         {/* INPUT */}
         Can I wear{" "}
-        <input
-          className="p-2 bg-white/70 text-center mx-2"
-          type="search"
-          value={inputClothes}
-          placeholder="Shirt"
-          onClick={(): void => {
-            setIsSearchingClothes(true);
-            setIsSearchingLocation(false);
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSendUserChoice();
           }}
-          onChange={(e): void => {
-            setInputClothes(e.target.value);
-          }}
-        />{" "}
-        in{" "}
-        <input
-          className="p-2 bg-white/70 text-center mx-2"
-          type="search"
-          value={inputLocation}
-          placeholder="Tokyo"
-          onClick={(): void => {
-            setIsSearchingClothes(false);
-            setIsSearchingLocation(true);
-          }}
-          onChange={(e): void => {
-            setInputLocation(e.target.value);
-          }}
-        />
-        ?
-        <button
-          className="min-w-fit h-fit py-4 px-8 mx-2 lg:ml-8 bg-black text-white text-sm"
-          onClick={handleSendUserChoice}
         >
-          Search
-        </button>
+          <input
+            className="p-2 bg-white/70 text-center mx-2"
+            type="search"
+            value={inputClothes}
+            autoFocus
+            placeholder="Shirt"
+            onFocus={(): void => {
+              setIsSearchingClothes(true);
+              setIsSearchingLocation(false);
+            }}
+            onChange={(e): void => {
+              setInputClothes(e.target.value);
+            }}
+          />{" "}
+          in{" "}
+          <input
+            className="p-2 bg-white/70 text-center mx-2"
+            type="search"
+            value={inputLocation}
+            placeholder="Tokyo"
+            onFocus={(): void => {
+              setIsSearchingClothes(false);
+              setIsSearchingLocation(true);
+            }}
+            onChange={(e): void => {
+              setInputLocation(e.target.value);
+            }}
+          />
+          ?
+          <button
+            className="min-w-fit h-fit py-4 px-8 mx-2 lg:ml-8 bg-black text-white text-sm disabled:bg-secondary/80"
+            onClick={handleSendUserChoice}
+            disabled={inputClothes.length < 1 || inputLocation.length < 1}
+          >
+            Search
+          </button>
+        </form>
       </div>
 
       {/* LAYOUT SHIFT */}

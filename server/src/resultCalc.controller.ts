@@ -18,13 +18,15 @@ module.exports = {
       catagories
     );
 
+    if (clothesData.error) {
+      return res.status(400).send(clothesData);
+    }
+
     const weatherData: any = await weatherModel.getWeatherDataToday(location);
 
     // ERROR HANDLER
     if (weatherData.error) {
-      return res.status(400).send({
-        error: { message: "Cound not find the location, please try again" },
-      });
+      return res.status(400).send(weatherData);
     }
 
     if (weatherData.location.country !== "Japan") {

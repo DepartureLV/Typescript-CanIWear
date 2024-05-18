@@ -16,6 +16,7 @@ export interface WeatherRawData {
 
 export interface clothesStat {
   itemName: string;
+  error?: { message: string };
   maxtemp_resistant?: number;
   mintemp_resistant?: number;
   wind_resistant?: number;
