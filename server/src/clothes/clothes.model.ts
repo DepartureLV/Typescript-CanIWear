@@ -87,7 +87,7 @@ module.exports = {
       }
     } catch (err) {
       console.log(err);
-      return { error: { message: "Please input clothes type" } };
+      return { error: { message: "Please input correct clothes type" } };
     }
 
     return stat;
