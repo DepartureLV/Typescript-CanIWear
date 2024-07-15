@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ClothesSelectionSkeleton from "./ClothesSelectionSkeleton";
+import { IoShirtOutline } from "react-icons/io5";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -60,25 +61,7 @@ export default function ClothesSelection({
                   className="group relative flex gap-x-6 rounded-lg px-4 py-3 hover:bg-white/60"
                 >
                   <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <svg
-                      className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-                      />
-                    </svg>
+                    <IoShirtOutline className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
                   </div>
                   <div>
                     <h2 className="font-semibold text-gray-900 mb-2">
