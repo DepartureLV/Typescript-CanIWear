@@ -12,7 +12,8 @@ dist
 dist-ssr
 *.local
 
-# Next
+# Next files
+.next
 build
 
 # Editor directories and files
