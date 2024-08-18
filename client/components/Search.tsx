@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import ClothesSelection from "../components/ClothesSelection";
-import CitiesSearch from "../components/CitiesSearch";
+import ClothesSelection from "./ClothesSelection";
+import CitiesSearch from "./CitiesSearch";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 type Props = {
   setIsGetResult: Function;

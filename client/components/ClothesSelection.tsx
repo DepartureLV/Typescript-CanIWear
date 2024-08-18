@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ClothesSelectionSkeleton from "./ClothesSelectionSkeleton";
 import { IoShirtOutline } from "react-icons/io5";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 type Props = {
   setInputClothes: Function;

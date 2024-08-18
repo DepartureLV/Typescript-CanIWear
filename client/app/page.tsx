@@ -1,12 +1,13 @@
+"use client";
+
 import { useState } from "react";
+import Search from "../components/Search";
+import Result from "../components/Result";
 
-import Search from "./components/Search";
-import Result from "./components/Result";
-
-function App() {
+function Homepage() {
   // USE STATE
   const [isGetResult, setIsGetResult] = useState<boolean>(false);
-  const [result, setResult] = useState<any>({});
+  const [result, setResult] = useState<unknown>({});
 
   // USE EFFECT
 
@@ -28,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default Homepage;
